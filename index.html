@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <style>
+        body {
+            background-color: #8a2be2; /* Purple color */
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+
+        video {
+            width: 80vw; /* 80% of the viewport width */
+            max-width: 400px; /* Set a maximum width to avoid the video becoming too large on larger screens */
+            height: auto; /* Let the height adjust automatically to maintain the aspect ratio */
+            outline: none; /* Remove default outline for better appearance */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading">
+        <h1>Loading...</h1>
+    </div>
+
+    <video id="videoPlayer" controls loop style="width: 80vw; max-width: 400px;">
+        <source src="p2.mov" type="video/quicktime">
+        Your browser does not support the video tag.
+    </video>
+    
+
+    <script>
+        // JavaScript to hide loading message and show video when it's ready
+        var videoPlayer = document.getElementById('videoPlayer');
+        var loadingMessage = document.getElementById('loading');
+
+        videoPlayer.addEventListener('loadeddata', function () {
+            loadingMessage.style.display = 'none';
+            videoPlayer.style.display = 'block';
+            videoPlayer.play(); // Start playing the video
+        });
+
+        // In case the video cannot be loaded, hide the loading message and show an error message
+        videoPlayer.addEventListener('error', function () {
+            loadingMessage.innerHTML = 'Error loading the video.';
+            loadingMessage.style.display = 'block';
+        });
+    </script>
+
+</body>
+</html>
